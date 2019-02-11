@@ -27,7 +27,7 @@ class TableItem:
 
         # remove comment count
         # this may not work sometimes :(
-        if row_props[0] in string.digits:
+        if row_props[0].isdigit():
             row_props = row_props[1:]
 
         self.properties = dict(zip(item_props, row_props))
