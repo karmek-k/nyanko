@@ -3,6 +3,10 @@ import string
 from bs4 import BeautifulSoup
 
 
+"""
+Properties used while parsing table rows.
+They must be in this exact order.
+"""
 item_props = (
     "title",
     "size",
@@ -14,6 +18,10 @@ item_props = (
 
 
 class TableItem:
+    """
+    A parsed table row.
+    Contains item's properties.
+    """
     properties = {}
 
     def __init__(self, tr):
@@ -41,9 +49,16 @@ class TableItem:
 
 
 class Table:
+    """
+    Class intended for storing TableItem objects.
+    """
     rows = []
 
     def __init__(self, html_document):
+        """
+        Parse a nyaa page into a Table structure.
+        :param html_document: HTML document text, as it reads from a file
+        """
         soup = BeautifulSoup(html_document, "html.parser")
         table_rows = soup.table.tbody.find_all('tr')
 
