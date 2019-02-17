@@ -23,6 +23,8 @@ def get_page(url, **kwargs):
     except error.URLError:
         print("Error: URL failure. The URL may be incorrect.")
 
+    return ""
+
 
 def get_page_search(url, query, page=1):
     """
