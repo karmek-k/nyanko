@@ -1,4 +1,4 @@
-from urllib import request
+from urllib import request, error
 
 
 def get_page(url, **kwargs):
@@ -15,8 +15,15 @@ def get_page(url, **kwargs):
     else:
         arguments = ""
 
-    with request.urlopen("http://{0}/{1}".format(url, arguments)) as page:
-        return page.read()
+    try:
+        with request.urlopen("http://{0}/{1}".format(url, arguments)) as page:
+            return page.read()
+    except error.HTTPError:
+        print("Error: HTTP failure. Can't connect to the server.")
+    except error.URLError:
+        print("Error: URL failure. The URL may be incorrect.")
+
+    return ""
 
 
 def get_page_search(url, query, page=1):
